@@ -12,8 +12,16 @@ public class OnBallDestroyEvent : UnityEvent<bool>
 public class Ball : MonoBehaviour
 {
     public float ttl = 10;
-    public GameEvent BallHitEvent;
+    public GameEventWithParam<Effect> BallHitEvent;
     public GameEvent BallOutOfRangeEvent;
+    public Effect Effect { get; }
+
+    Effect effect;
+
+    void Start()
+    {
+        gameObject.tag = "ball";
+    }
 
     public void Update()
     {
@@ -41,9 +49,26 @@ public class Ball : MonoBehaviour
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocX, 0);
     }
 
-    void OnMouseDown()
+    public void SetEffect(Effect _effect)
+    {
+        if (effect == null)
+        {
+            effect = _effect;
+        }
+        else
+        {
+            Debug.LogError("Ball already has an effect");
+        }
+    }
+
+    public void PlayerDestroy()
     {
         Destroy(gameObject);
-        BallHitEvent.TriggerEvent();
+        BallHitEvent.TriggerEvent(effect);
+    }
+
+    void OnMouseDown()
+    {
+        PlayerDestroy();
     }
 }
