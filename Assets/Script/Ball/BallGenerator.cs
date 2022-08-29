@@ -19,6 +19,7 @@ public class BallGenerator : Singleton<BallGenerator>
         if (spawnCoolDown <= 0)
         {
             SpawnBalls();
+            spawnCoolDown = Random.Range(SpawnCoolDownRange[0], SpawnCoolDownRange[1]);
         }
     }
 
@@ -40,7 +41,6 @@ public class BallGenerator : Singleton<BallGenerator>
             Random.Range(InitRangeX[0], InitRangeX[1]),
             InitY,
             BallTTL);
-        spawnCoolDown = Random.Range(SpawnCoolDownRange[0], SpawnCoolDownRange[1]);
     }
 
     private void SpawnBalls()
