@@ -150,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a29d350136e1b45068f2560337cd43a1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1aa11f8d3e9ca6d4c85a5bbd8023567b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 233242945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3085dd8fa1ec498ab17cb0d7d5884d6, type: 3}
+  m_Script: {fileID: 11500000, guid: a494f94ca81faf14c902ac09a0a11c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &233242947
@@ -351,7 +351,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c7fbe3fd5f31d4821ac57d984ecefb1c, type: 3}
+    m_Font: {fileID: 12800000, guid: 3d74c41976245b34c9a36aac4e806cfd, type: 3}
     m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66e89a2a293884e59a02eb968b8ab93c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 677937651d6e8a74288d0b2d6879fccc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -562,7 +562,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8903e3c54d43441de85388419c3a287d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76616e9b3c33c454a8d4806794dcafdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -794,7 +794,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c7fbe3fd5f31d4821ac57d984ecefb1c, type: 3}
+    m_Font: {fileID: 12800000, guid: 3d74c41976245b34c9a36aac4e806cfd, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -873,7 +873,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c7fbe3fd5f31d4821ac57d984ecefb1c, type: 3}
+    m_Font: {fileID: 12800000, guid: 3d74c41976245b34c9a36aac4e806cfd, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -952,7 +952,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c7fbe3fd5f31d4821ac57d984ecefb1c, type: 3}
+    m_Font: {fileID: 12800000, guid: 3d74c41976245b34c9a36aac4e806cfd, type: 3}
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ceda858cc9684815bcbc5d9792f40f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95c078477accfac4f842a779ee9325d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
