@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
-        gameObject.tag = "ball";
+        gameObject.tag = "Ball";
     }
 
     public void Update()
