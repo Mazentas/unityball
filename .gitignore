@@ -374,10 +374,6 @@ FodyWeavers.xsd
 /[Mm]emoryCaptures/
 /[Rr]ecordings/
 
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
-
 *.apk
 *.aab
 *.unitypackage
