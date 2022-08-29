@@ -32,7 +32,8 @@ public class GameManager : Singleton<GameManager>
 
     public void HitAllBall()
     {
-        foreach (GameObject ball in GameObject.FindGameObjectsWithTag("ball")) {
+        Debug.Log("Hit all ball");
+        foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball")) {
             Ball ballScript = ball.GetComponent<Ball>();
             if (ballScript != null)
             {

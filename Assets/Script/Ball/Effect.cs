@@ -1,4 +1,4 @@
 ﻿public class Effect
 {
-    public float bonusTime { get; } = 10;
+    public float bonusTime { get; } = 2;
 }

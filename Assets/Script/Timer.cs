@@ -5,6 +5,7 @@ public class Timer : Singleton<Timer>
 {
     public float InitialTimeRemaining = 90;
     public GameEvent TimeoutEvent;
+    public Text TimerText;
     public float RemainingTime { get { return remainingTime; } }
 
     float remainingTime;
@@ -33,7 +34,7 @@ public class Timer : Singleton<Timer>
     private void updateTimer()
     {
         string remainTimeTxt = $"{Mathf.FloorToInt(remainingTime / 60):00}:{Mathf.FloorToInt(remainingTime % 60):00}";
-        this.GetComponentInChildren<Text>().text = remainTimeTxt;
+        TimerText.text = remainTimeTxt;
     }
 
     public void ReduceTime(float t)
