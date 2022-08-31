@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "BallHitEvent")]
-public class BallHitEvent : GameEventWithParam<Effect> {}
+public class BallHitEvent : GameEventWithParam<IEffect> {}

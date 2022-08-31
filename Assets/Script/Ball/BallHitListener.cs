@@ -1,1 +1,1 @@
-﻿public class BallHitListener : GameEventListnerWithParam<Effect> {}
+﻿public class BallHitListener : GameEventListnerWithParam<IEffect> {}

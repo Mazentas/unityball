@@ -1,29 +1,34 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
-/// <summary>
-/// Event when <c>Ball</c> is destroyed with 1 parameters of whether it is destroy by player
-/// </summary>
-[System.Serializable]
-public class OnBallDestroyEvent : UnityEvent<bool>
+public interface IBall
 {
+    public void SetTTL(float ttl);
+    public void SetSize(float size);
+    public void SetXVelocity(float velocX);
+    public void SetEffect(IEffect effect);
+    public void PlayerDestroy();
 }
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IBall
 {
+    public float BonusTime = 10;
+    public float[] BallSizeRange = { 0.5f, 1f };
+    public float BallMaxInitVel = 8;
     public float ttl = 10;
-    public GameEventWithParam<Effect> BallHitEvent;
+    public BallHitEvent BallHitEvent;
     public GameEvent BallOutOfRangeEvent;
-    public Effect Effect { get; }
+    public IEffect Effect { get { return effect; } }
+    protected IEffect effect;
 
-    Effect effect;
-
-    void Start()
+    void Awake()
     {
         gameObject.tag = "Ball";
+        this.effect = new Effect(Timer.Instance, BonusTime);
+        SetSize(Random.Range(BallSizeRange[0], BallSizeRange[1]));
+        SetXVelocity(Random.Range(-BallMaxInitVel, BallMaxInitVel));
     }
 
-    public void Update()
+    void Update()
     {
         ttl -= Time.deltaTime;
         if (ttl <= 0)
@@ -49,22 +54,20 @@ public class Ball : MonoBehaviour
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocX, 0);
     }
 
-    public void SetEffect(Effect _effect)
+    public void SetEffect(IEffect effect)
     {
-        if (effect == null)
-        {
-            effect = _effect;
-        }
-        else
-        {
-            Debug.LogError("Ball already has an effect");
-        }
+        this.effect = effect;
     }
 
     public void PlayerDestroy()
     {
         Destroy(gameObject);
-        BallHitEvent.TriggerEvent(effect);
+        BallHitEvent.TriggerEvent(this.effect);
+    }
+
+    public void SetTTL(float ttl)
+    {
+        this.ttl = ttl;
     }
 
     void OnMouseDown()

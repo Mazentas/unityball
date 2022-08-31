@@ -10,9 +10,9 @@ public class GameManager : Singleton<GameManager>
         timer = Timer.Instance;
     }
 
-    public void OnBallHit(Effect effect)
+    public void OnBallHit(IEffect effect)
     {
-        timer.AddTime(effect.bonusTime);
+        effect.Execute();
     }
 
     public void OnTimeOut()
@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene("GameOver");
     }
 
-    public void HitAllBall()
+    public void ClearAllBall()
     {
         Debug.Log("Hit all ball");
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball")) {
