@@ -12,7 +12,7 @@ public interface IBall
 public class Ball : MonoBehaviour, IBall
 {
     public float BonusTime = 10;
-    public float[] BallSizeRange = { 0.5f, 1f };
+    public float[] BallSizeRange = { 0.1f, 0.2f };
     public float BallMaxInitVel = 8;
     public float ttl = 10;
     public BallHitEvent BallHitEvent;
