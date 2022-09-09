@@ -9,8 +9,10 @@ public class BallGenerator : Singleton<BallGenerator>
     public float[] SpawnCoolDownRange = { 0.2f, 3 };
     public int[] NumberSpawnRange = { 1, 4 };
     public float BallTTL = 10;
+    public int MaxBallsCount = 6;
 
     float spawnCoolDown = 0;
+    int ballCount = 0;
 
     public void Awake()
     {
@@ -72,13 +74,22 @@ public class BallGenerator : Singleton<BallGenerator>
             Random.Range(InitRangeX[0], InitRangeX[1]),
             InitY,
             BallTTL);
+        ballCount++;
     }
 
     private void SpawnBalls()
     {
         for (int i = 0; i < Random.Range(NumberSpawnRange[0], NumberSpawnRange[1]); i++)
         {
-            NewRandomBall();
+            if (ballCount < MaxBallsCount)
+            {
+                NewRandomBall();
+            }
         }
+    }
+
+    public void DecreaseBallCount()
+    {
+        ballCount--;
     }
 }
