@@ -1277,11 +1277,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52080b109aa9d2c4fa32c272466ddda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
   Balls:
   - {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
   - {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
   - {fileID: 5601006868593016915, guid: ec6f58f58d6d612408b6b99e28387fd8, type: 3}
-  SpawnRates: 28230000f4010000f4010000
+  SpawnRates: 000000008813000088130000
   InitY: 5.51
   InitRangeX:
   - -2.1
@@ -1292,6 +1293,7 @@ MonoBehaviour:
   NumberSpawnRange: 0100000002000000
   BallTTL: 20
   MaxBallsCount: 6
+  ballCount: 0
 --- !u!4 &1437846506
 Transform:
   m_ObjectHideFlags: 0
@@ -1726,6 +1728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce0a52633c756d46a29a83185a66bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
   paused: 0
 --- !u!4 &1806078786
 Transform:
@@ -1869,6 +1872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d8031d01e14494d95c31aacd7c9732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
   InitialTimeRemaining: 90
   TimeoutEvent: {fileID: 11400000, guid: e04dfe8abc587f9458c0e701dc5471e6, type: 2}
   TimerText: {fileID: 182331786}
