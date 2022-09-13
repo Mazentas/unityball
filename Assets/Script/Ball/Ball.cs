@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public interface IBall
 {
@@ -26,6 +27,7 @@ public class Ball : MonoBehaviour, IBall
     public GameEvent BallOutOfRangeEvent;
     public IEffect Effect { get { return effect; } }
     protected IEffect effect;
+    public GameObject bonusText; 
 
     void Awake()
     {
@@ -82,5 +84,14 @@ public class Ball : MonoBehaviour, IBall
     void OnMouseDown()
     {
         PlayerDestroy();
+        showBonusText();
+
+    }
+
+    void showBonusText()
+    {
+        Debug.Log("Show bonus text");
+        GameObject text = Instantiate(bonusText, transform.position, Quaternion.identity);
+        text.GetComponent<Text>().text = "+5S";
     }
 }

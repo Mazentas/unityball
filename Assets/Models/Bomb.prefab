@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: BonusTime
-      value: -10
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: audioClip
@@ -21,11 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: BallSizeRange.Array.data[0]
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: BallSizeRange.Array.data[1]
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: m_Name
