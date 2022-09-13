@@ -4,9 +4,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     Timer timer;
-    public AudioClip audioNormalHit;
-    public AudioClip audioBoomHit;
-    public AudioClip audioSpecialHit;
    
     public bool paused = false;
 
