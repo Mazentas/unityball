@@ -12,7 +12,7 @@ public class BallGenerator : Singleton<BallGenerator>
     public int MaxBallsCount = 6;
 
     float spawnCoolDown = 0;
-    int ballCount = 0;
+    public int ballCount = 0;
 
     public void Awake()
     {

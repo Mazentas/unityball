@@ -8,6 +8,7 @@ public interface IBall
     public void SetXVelocity(float velocX);
     public void SetEffect(IEffect effect);
     public void PlayerDestroy();
+    public bool IsSpecial();
 }
 
 public enum BALLTYPES
@@ -18,7 +19,7 @@ public enum BALLTYPES
 
 public class Ball : MonoBehaviour, IBall
 {
-    public BALLTYPES balltypes;
+    public AudioClip ballhitAudio;
     public float BonusTime = 10;
     public float[] BallSizeRange = { 0.1f, 0.2f };
     public float BallMaxInitVel = 8;
@@ -26,13 +27,15 @@ public class Ball : MonoBehaviour, IBall
     public BallHitEvent BallHitEvent;
     public GameEvent BallOutOfRangeEvent;
     public IEffect Effect { get { return effect; } }
+
     protected IEffect effect;
     public GameObject bonusText; 
+    [SerializeField] protected bool Special = false; // not destroy if special ball hit;
 
     void Awake()
     {
         gameObject.tag = "Ball";
-        this.effect = new Effect(Timer.Instance, BonusTime, balltypes);
+        this.effect = new Effect(Timer.Instance, BonusTime, ballhitAudio);
         SetSize(Random.Range(BallSizeRange[0], BallSizeRange[1]));
         SetXVelocity(Random.Range(-BallMaxInitVel, BallMaxInitVel));
   
@@ -79,6 +82,11 @@ public class Ball : MonoBehaviour, IBall
     public void SetTTL(float ttl)
     {
         this.ttl = ttl;
+    }
+
+    public bool IsSpecial()
+    {
+        return Special;
     }
 
     void OnMouseDown()

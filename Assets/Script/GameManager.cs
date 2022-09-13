@@ -8,10 +8,11 @@ public class GameManager : Singleton<GameManager>
     public AudioClip audioBoomHit;
     public AudioClip audioSpecialHit;
    
+    public bool paused = false;
+
     public void Awake()
     {
         timer = Timer.Instance;
-        
     }
 
     public GameObject GetGameObject()
@@ -19,19 +20,17 @@ public class GameManager : Singleton<GameManager>
         return gameObject;
     }
 
-    public AudioClip GetAudioNormalHit()
+    public void PlayAudio(AudioClip audio)
     {
-        return audioNormalHit;
+        gameObject.GetComponent<AudioSource>().PlayOneShot(audio);
     }
 
-    public AudioClip GetAudioBoomHit()
+    public void Update()
     {
-        return audioBoomHit;
-    }
-
-    public AudioClip GetAudioSpecialHit()
-    {
-        return audioSpecialHit;
+        if (paused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
     public void OnBallHit(IEffect effect)
@@ -61,7 +60,10 @@ public class GameManager : Singleton<GameManager>
             Ball ballScript = ball.GetComponent<Ball>();
             if (ballScript != null)
             {
-                ballScript.PlayerDestroy();
+                if (!ballScript.IsSpecial())
+                    ballScript.PlayerDestroy();
+                else
+                    Debug.Log("Ignore special ball");
             } else
             {
                 Debug.LogError("ball script not found");

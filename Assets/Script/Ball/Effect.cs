@@ -7,15 +7,15 @@ public interface IEffect
 
 public class Effect : IEffect
 {
-    BALLTYPES ballType;
-    GameObject gameManagerObject;
+    AudioClip hitAudio;
+    GameManager gameManager;
 
-    public Effect(Timer timer, float bonusTime, BALLTYPES ballTypes)
+    public Effect(Timer timer, float bonusTime, AudioClip hitAudio)
     {
         this.timer = timer;
         this.bonusTime = bonusTime;
-        this.ballType = ballTypes; 
-        gameManagerObject = GameManager.Instance.GetGameObject();
+        this.hitAudio = hitAudio;
+        gameManager = GameManager.Instance;
     }
 
     Timer timer { get; }
@@ -28,28 +28,7 @@ public class Effect : IEffect
 
     private void PlayAudio()
     {
-        AudioClip clip = null;
-        Debug.Log("Playing audio type " + ballType.ToString());
-        switch (ballType)
-        {
-            case BALLTYPES.NORMAL_BALL:
-                clip = GameManager.Instance.GetAudioNormalHit();
-             
-                break;
-            case BALLTYPES.BOOM:
-                clip = GameManager.Instance.GetAudioBoomHit();
-            
-                break;
-            case BALLTYPES.SPECIAL_BALL:
-                clip = GameManager.Instance.GetAudioSpecialHit();
-
-                break;
-        }
-        if (clip
-            != null)
-        {
-            gameManagerObject.GetComponent<AudioSource>().PlayOneShot(clip);
-        }
+        gameManager.PlayAudio(this.hitAudio);
     }
 }
 
