@@ -9,8 +9,15 @@ public interface IBall
     public void PlayerDestroy();
 }
 
+public enum BALLTYPES
+{
+    SPECIAL_BALL, NORMAL_BALL, BOOM
+}
+
+
 public class Ball : MonoBehaviour, IBall
 {
+    public BALLTYPES balltypes;
     public float BonusTime = 10;
     public float[] BallSizeRange = { 0.1f, 0.2f };
     public float BallMaxInitVel = 8;
@@ -23,9 +30,10 @@ public class Ball : MonoBehaviour, IBall
     void Awake()
     {
         gameObject.tag = "Ball";
-        this.effect = new Effect(Timer.Instance, BonusTime);
+        this.effect = new Effect(Timer.Instance, BonusTime, balltypes);
         SetSize(Random.Range(BallSizeRange[0], BallSizeRange[1]));
         SetXVelocity(Random.Range(-BallMaxInitVel, BallMaxInitVel));
+  
     }
 
     void Update()
@@ -63,6 +71,7 @@ public class Ball : MonoBehaviour, IBall
     {
         Destroy(gameObject);
         BallHitEvent.TriggerEvent(this.effect);
+
     }
 
     public void SetTTL(float ttl)

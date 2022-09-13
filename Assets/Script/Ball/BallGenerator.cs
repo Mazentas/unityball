@@ -30,7 +30,7 @@ public class BallGenerator : Singleton<BallGenerator>
             int equalRate = 10000 / Balls.Length;
             SpawnRates = new int[Balls.Length];
             for (int i = 0; i < Balls.Length - 1; i++)
-            {
+            {   
                 SpawnRates[i] = equalRate;
             }
             SpawnRates[Balls.Length - 1] = 10000 - equalRate * (Balls.Length - 1);

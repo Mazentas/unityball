@@ -3,6 +3,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour
     where T : Component
 {
+    public float test; 
     private static T _instance = null;
     public static T Instance
     {

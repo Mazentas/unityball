@@ -61,6 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+    - {fileID: 5677756375383447936, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
 --- !u!1 &5064889586338775919 stripped
 GameObject:
@@ -79,6 +80,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb7b142053efc04bb3104fc3fa2c4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balltypes: 0
   BonusTime: 10
+  BallSizeRange:
+  - 0.1
+  - 0.2
+  BallMaxInitVel: 8
+  ttl: 10
   BallHitEvent: {fileID: 11400000, guid: c87afd171f5a8484fb41b510d72fe571, type: 2}
   BallOutOfRangeEvent: {fileID: 11400000, guid: f8df9903481c01543a82ca513e183f13, type: 2}

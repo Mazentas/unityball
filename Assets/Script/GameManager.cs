@@ -4,10 +4,34 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     Timer timer;
-
+    public AudioClip audioNormalHit;
+    public AudioClip audioBoomHit;
+    public AudioClip audioSpecialHit;
+   
     public void Awake()
     {
         timer = Timer.Instance;
+        
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public AudioClip GetAudioNormalHit()
+    {
+        return audioNormalHit;
+    }
+
+    public AudioClip GetAudioBoomHit()
+    {
+        return audioBoomHit;
+    }
+
+    public AudioClip GetAudioSpecialHit()
+    {
+        return audioSpecialHit;
     }
 
     public void OnBallHit(IEffect effect)
