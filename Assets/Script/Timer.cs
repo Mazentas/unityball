@@ -46,4 +46,9 @@ public class Timer : Singleton<Timer>
     {
         remainingTime += t;
     }
+
+    public static string GetTotalTime()
+    {
+        return $"{Mathf.FloorToInt(totalTime / 60):00}:{Mathf.FloorToInt(totalTime % 60):00}"; ;
+    }
 }
