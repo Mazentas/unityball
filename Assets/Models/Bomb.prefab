@@ -39,6 +39,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb
       objectReference: {fileID: 0}
+    - target: {fileID: 2730919426349215827, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: m_Radius
+      value: 0.5181127
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730919426349215827, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0011142591
+      objectReference: {fileID: 0}
     - target: {fileID: 2730919426349215854, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: m_Sprite
       value: 

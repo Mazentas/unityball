@@ -8,11 +8,16 @@ public class Timer : Singleton<Timer>
     public Text TimerText;
     public float RemainingTime { get { return remainingTime; } }
 
+    private Color timerTextColor; 
+
     float remainingTime;
     static float totalTime = 0;
+
+    AudioSource AudioSource;
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource = GetComponent<AudioSource>(); 
         remainingTime = InitialTimeRemaining;
         totalTime = 0;
     }
@@ -22,11 +27,27 @@ public class Timer : Singleton<Timer>
     {
         remainingTime -= Time.deltaTime;
         totalTime += Time.deltaTime;
-
         if (remainingTime <= 0)
         {
             remainingTime = 0;
             TimeoutEvent.TriggerEvent();
+        } else if (remainingTime < 4)
+        {
+            ColorUtility.TryParseHtmlString("#BF1919", out timerTextColor);
+            TimerText.color = timerTextColor;
+            if (!AudioSource.isPlaying)
+            {
+                AudioSource.Play();
+            }
+        } else
+        {
+
+            ColorUtility.TryParseHtmlString("#FFFFFF", out timerTextColor);
+            TimerText.color = timerTextColor;
+            if (AudioSource.isPlaying)
+            {
+                AudioSource.Stop(); 
+            }
         }
         updateTimer();
     }

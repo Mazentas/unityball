@@ -143,5 +143,5 @@ MonoBehaviour:
   ttl: 10
   BallHitEvent: {fileID: 11400000, guid: c87afd171f5a8484fb41b510d72fe571, type: 2}
   BallOutOfRangeEvent: {fileID: 11400000, guid: f8df9903481c01543a82ca513e183f13, type: 2}
-  bonusText: {fileID: 5858905630480310979, guid: 5ea09161fa62745d48b0cdb9cf9827e8, type: 3}
+  floatUpParent: {fileID: 5065260469764333825, guid: f1b45ffbeb7684a7289c642a58ad5515, type: 3}
   Special: 0

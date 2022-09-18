@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using static Util.Constants;
 
 public interface IBall
 {
@@ -20,16 +21,16 @@ public enum BALLTYPES
 public class Ball : MonoBehaviour, IBall
 {
     public AudioClip ballhitAudio;
-    public float BonusTime = 10;
+    public float BonusTime = InitBonus;
     public float[] BallSizeRange = { 0.1f, 0.2f };
-    public float BallMaxInitVel = 8;
-    public float ttl = 10;
+    public float BallMaxInitVel = MaxVel;
+    public float ttl = InitTtl;
     public BallHitEvent BallHitEvent;
     public GameEvent BallOutOfRangeEvent;
     public IEffect Effect { get { return effect; } }
 
     protected IEffect effect;
-    public GameObject bonusText; 
+    public GameObject floatUpParent;
     [SerializeField] protected bool Special = false; // not destroy if special ball hit;
 
     void Awake()
@@ -49,8 +50,8 @@ public class Ball : MonoBehaviour, IBall
             this.GetComponent<CircleCollider2D>().enabled = false;
         }
 
-        if (gameObject.transform.position.x > 10 || gameObject.transform.position.y > 10 ||
-            gameObject.transform.position.x < -10 || gameObject.transform.position.y < -10)
+        if (gameObject.transform.position.x > MaxX || gameObject.transform.position.y > MaxY ||
+            gameObject.transform.position.x < MinX || gameObject.transform.position.y < MinY )
         {
             Destroy(gameObject);
             BallOutOfRangeEvent.TriggerEvent();
@@ -92,14 +93,26 @@ public class Ball : MonoBehaviour, IBall
     void OnMouseDown()
     {
         PlayerDestroy();
-        showBonusText();
+        ShowBonusText();
 
     }
 
-    void showBonusText()
+    public void ShowBonusText()
     {
-        Debug.Log("Show bonus text");
-        GameObject text = Instantiate(bonusText, transform.position, Quaternion.identity);
-        text.GetComponent<Text>().text = "+5S";
+        GameObject floatUp = Instantiate(floatUpParent, transform.position, Quaternion.identity);
+
+        if (BonusTime == BonusBoom)
+        {
+            floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BonusBoomText;
+            floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FloatUpBoom);
+        }
+        else
+        {
+
+            floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BonusNormalText;
+            floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FloatUpNormal);
+        }
+
+    
     }
 }

@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Util.Constants;
 
 public class HomeManager : MonoBehaviour
 {
-    AudioSource audioData;
+    
 
     private void Start()
     {
-        //audioData = GetComponent<AudioSource>();
-        //audioData.Play(0);
-        //Debug.Log("started");
+
     }
 
     private void Update()
@@ -20,6 +19,32 @@ public class HomeManager : MonoBehaviour
     }
     public void OnStartClick ()
     {
-        SceneManager.LoadScene("Game");
+        if (CheckIsFirstTimeOpen())
+        {
+            SceneManager.LoadScene(Tutorial);
+        }
+        else
+        {
+            SceneManager.LoadScene(Game);
+        }
+    }
+
+    private bool CheckIsFirstTimeOpen()
+    {
+        if (PlayerPrefs.HasKey(FIRST_TIME_KEY))
+        {
+            if (PlayerPrefs.GetInt(FIRST_TIME_KEY, 1) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false; 
+            }
+        }
+        else
+        {
+            return false; 
+        }
     }
 }

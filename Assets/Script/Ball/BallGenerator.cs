@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Util.Constants;
 
 public class BallGenerator : Singleton<BallGenerator>
 {
@@ -22,18 +23,18 @@ public class BallGenerator : Singleton<BallGenerator>
             sum += rate;
         }
 
-        if (sum != 10000 || Balls.Length != SpawnRates.Length)
+        if (sum != SumSpawnRates || Balls.Length != SpawnRates.Length)
         {
             Debug.LogError("SpawnRates in correct, SpawnRates should have same length as BallTypes and add up to 10000");
 
             // Auto correct rate to equally likely if wrongly configured
-            int equalRate = 10000 / Balls.Length;
+            int equalRate = SumSpawnRates / Balls.Length;
             SpawnRates = new int[Balls.Length];
             for (int i = 0; i < Balls.Length - 1; i++)
             {   
                 SpawnRates[i] = equalRate;
             }
-            SpawnRates[Balls.Length - 1] = 10000 - equalRate * (Balls.Length - 1);
+            SpawnRates[Balls.Length - 1] = SumSpawnRates - equalRate * (Balls.Length - 1);
         }
     }
 
@@ -49,7 +50,7 @@ public class BallGenerator : Singleton<BallGenerator>
 
     private int GetRandomBallIndex()
     {
-        int randn = Random.Range(0, 10000);
+        int randn = Random.Range(0, SumSpawnRates);
         for (int i = 0; i < SpawnRates.Length; i++)
         {
             randn -= SpawnRates[i];
