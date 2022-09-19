@@ -6,12 +6,14 @@ public class GameManager : Singleton<GameManager>
 {
     Timer timer;
    
-    bool paused = false;
-    public GameObject pausePanel; 
+    public bool paused = false;
+    public GameObject pausePanel;
+    public BallGenerator generator;
 
     public void Awake()
     {
         timer = Timer.Instance;
+        generator = BallGenerator.Instance;
     }
 
     public GameObject GetGameObject()
@@ -39,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     public void OnBallHit(IEffect effect)
     {
         effect.Execute();
+        generator.DecreaseBallCount();
     }
 
     public void OnTimeOut()
@@ -48,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OnBallOutOfRange()
     {
-        timer.ReduceTime(3);
+        //timer.ReduceTime(3);
     }
 
     public void GameOver()
@@ -58,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Pause()
     {
-        Debug.Log("OPen Pause panel");
+        Debug.Log("Open Pause panel");
         paused = true;
         OpenPausePanel();
     }
@@ -71,7 +74,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Quit()
     {
-        Application.Quit(); 
+        Application.Quit();
     }
 
     public void OpenPausePanel()
