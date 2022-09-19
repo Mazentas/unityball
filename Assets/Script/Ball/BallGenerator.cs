@@ -18,6 +18,7 @@ public struct MaxBallType
 
 public class BallGenerator : Singleton<BallGenerator>
 {
+    [HideInInspector]
     public BallSpawn[] SpawnRates; // default spawn rates
     public MaxBallType[] MaxBallTypes;
     public float InitY = 5.51f;
@@ -29,7 +30,6 @@ public class BallGenerator : Singleton<BallGenerator>
     public int MaxBallsCount = 6;
     int ballCount = 0;
 
-    [HideInInspector]
     public static Dictionary<BALLTYPES, uint> TypeCount = new Dictionary<BALLTYPES, uint>();
 
     [HideInInspector]
@@ -131,7 +131,7 @@ public class BallGenerator : Singleton<BallGenerator>
         }
     }
 
-    public void DecreaseBallCount()
+    void DecreaseBallCount()
     {
         ballCount--;
     }
@@ -139,6 +139,7 @@ public class BallGenerator : Singleton<BallGenerator>
     public void OnBallDestroy(IEffect effect)
     {
         DecBallTypeCount(effect.Type);
+        DecreaseBallCount();
     }
 
     void IncBallTypeCount(BALLTYPES type)
@@ -157,6 +158,7 @@ public class BallGenerator : Singleton<BallGenerator>
         if (TypeCount.ContainsKey(type))
         {
             TypeCount[type]--;
+            Debug.Log($"type {type} count {TypeCount[type]}");
         } else
         {
             Debug.LogError("Ball types not yet registerd");

@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &356960602
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1236,6 +1236,8 @@ MonoBehaviour:
   MaxBallTypes:
   - type: 0
     max: 1
+  - type: 2
+    max: 2
   InitY: 5.51
   InitRangeX:
   - -2.1
@@ -1643,8 +1645,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1437846505}
         m_TargetAssemblyTypeName: BallGenerator, Assembly-CSharp
-        m_MethodName: DecreaseBallCount
-        m_Mode: 1
+        m_MethodName: OnBallDestroy
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2348,13 +2350,25 @@ MonoBehaviour:
   ballGenerator: {fileID: 0}
   EarlyGrav: -6.6
   EarlyVel: 2
+  EarlySpawnRate:
+  - ball: {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+    rate: 7000
+  - ball: {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
+    rate: 1000
   NormalGrav: -9.81
   NormalVel: 8
+  NormalSpawnRate:
+  - ball: {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+    rate: 7000
+  - ball: {fileID: 5601006868593016915, guid: ec6f58f58d6d612408b6b99e28387fd8, type: 3}
+    rate: 2000
+  - ball: {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
+    rate: 1000
   EndSpawnRate:
   - ball: {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
-    rate: 6000
+    rate: 8000
   - ball: {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
-    rate: 4000
+    rate: 2000
 --- !u!4 &2038209367
 Transform:
   m_ObjectHideFlags: 0
