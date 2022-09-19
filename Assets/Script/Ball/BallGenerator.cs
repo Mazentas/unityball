@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static Util.Constants;
 
@@ -8,9 +9,17 @@ public struct BallSpawn
     public int rate;
 }
 
+[System.Serializable]
+public struct MaxBallType
+{
+    public BALLTYPES type;
+    public uint max;
+}
+
 public class BallGenerator : Singleton<BallGenerator>
 {
     public BallSpawn[] SpawnRates; // default spawn rates
+    public MaxBallType[] MaxBallTypes;
     public float InitY = 5.51f;
     public float[] InitRangeX = { -2.1f, 2.1f };
     public float[] SpawnCoolDownRange = { 0.2f, 3 };
@@ -18,7 +27,10 @@ public class BallGenerator : Singleton<BallGenerator>
     public float BallMaxInitVel = MAX_VEL;
     public float BallTTL = 10;
     public int MaxBallsCount = 6;
-    public int ballCount = 0;
+    int ballCount = 0;
+
+    [HideInInspector]
+    public static Dictionary<BALLTYPES, uint> TypeCount = new Dictionary<BALLTYPES, uint>();
 
     [HideInInspector]
     public BallSpawn[] NextSpawnRates; // spawn rate of only next spawn
@@ -30,12 +42,6 @@ public class BallGenerator : Singleton<BallGenerator>
         foreach (BallSpawn spawnrate in SpawnRates)
         {
             sum += spawnrate.rate;
-        }
-
-        if (sum != SUM_SPAWN_RATE)
-        {
-            Debug.LogError("SpawnRates in correct, SpawnRates should have same length as BallTypes and add up to 10000");
-
         }
     }
 
@@ -55,30 +61,60 @@ public class BallGenerator : Singleton<BallGenerator>
         }
     }
 
-    private int GetRandomBallIndex()
+    GameObject GetRandomBallTemplate()
     {
-        int randn = Random.Range(0, SUM_SPAWN_RATE);
-        for (int i = 0; i < NextSpawnRates.Length; i++)
+        int sum = 0;
+        List<BallSpawn> validSpawnRates = new List<BallSpawn>();
+
+        // Recalculate spawn rate of each type in case some
+        // ball types exceed maximum number allowed.
+        // New spawn rate is calculate by
+        // rate of each ball type divided by
+        // sum of all ball types that has yet to exceed maximum amount.
+        foreach (BallSpawn spawnrate in NextSpawnRates)
         {
-            randn -= NextSpawnRates[i].rate;
-            if (randn <= 0)
-                return i;
+            BALLTYPES type = spawnrate.ball.GetComponent<IBall>().GetBallType();
+
+            uint maxForType = uint.MaxValue;
+            foreach (MaxBallType max in MaxBallTypes)
+            {
+                if (type == max.type)
+                {
+                    maxForType = max.max;
+                    break;
+                }
+            }
+
+            if (TypeCountOf(type) < maxForType)
+            {
+                sum += spawnrate.rate;
+                validSpawnRates.Add(spawnrate);
+            }
         }
-        return SpawnRates.Length - 1;
+
+        int randn = Random.Range(0, sum);
+        for (var i = 0; i < validSpawnRates.Count; i++)
+        {
+            randn -= validSpawnRates[i].rate;
+            if (randn <= 0)
+                return validSpawnRates[i].ball;
+        }
+        return validSpawnRates[validSpawnRates.Count - 1].ball;
     }
 
-    private void CreateNewBall(int index, float posX, float posY)
+    private void CreateNewBall(GameObject ballTemp, float posX, float posY)
     {
-        GameObject ballObj = Instantiate(NextSpawnRates[index].ball, new Vector3(posX, posY, 0), Quaternion.identity);
+        GameObject ballObj = Instantiate(ballTemp, new Vector3(posX, posY, 0), Quaternion.identity);
         IBall newBall = ballObj.GetComponent<IBall>();
+        IncBallTypeCount(newBall.GetBallType());
         newBall.SetXVelocity(Random.Range(-BallMaxInitVel, BallMaxInitVel));
     }
 
     private void NewRandomBall()
     {
-        int randi = GetRandomBallIndex();
+        GameObject randBall = GetRandomBallTemplate();
         CreateNewBall(
-            randi,
+            randBall,
             Random.Range(InitRangeX[0], InitRangeX[1]),
             InitY);
         ballCount++;
@@ -98,5 +134,42 @@ public class BallGenerator : Singleton<BallGenerator>
     public void DecreaseBallCount()
     {
         ballCount--;
+    }
+
+    public void OnBallDestroy(IEffect effect)
+    {
+        DecBallTypeCount(effect.Type);
+    }
+
+    void IncBallTypeCount(BALLTYPES type)
+    {
+        if (TypeCount.ContainsKey(type))
+        {
+            TypeCount[type]++;
+        } else
+        {
+            TypeCount.Add(type, 1);
+        }
+    }
+
+    void DecBallTypeCount(BALLTYPES type)
+    {
+        if (TypeCount.ContainsKey(type))
+        {
+            TypeCount[type]--;
+        } else
+        {
+            Debug.LogError("Ball types not yet registerd");
+        }
+    }
+
+    uint TypeCountOf(BALLTYPES type)
+    {
+        if (TypeCount.ContainsKey(type))
+        {
+            return TypeCount[type];
+        }
+        else
+            return 0;
     }
 }
