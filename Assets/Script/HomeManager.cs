@@ -21,11 +21,11 @@ public class HomeManager : MonoBehaviour
     {
         if (CheckIsFirstTimeOpen())
         {
-            SceneManager.LoadScene(Tutorial);
+            SceneManager.LoadScene(TUTORIAL);
         }
         else
         {
-            SceneManager.LoadScene(Game);
+            SceneManager.LoadScene(GAME);
         }
     }
 

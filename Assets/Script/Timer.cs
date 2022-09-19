@@ -8,10 +8,11 @@ public class Timer : Singleton<Timer>
     public Text TimerText;
     public float RemainingTime { get { return remainingTime; } }
 
-    private Color timerTextColor; 
 
     float remainingTime;
     static float totalTime = 0;
+    
+    Color timerTextColor; 
 
     AudioSource AudioSource;
     // Start is called before the first frame update
@@ -68,8 +69,18 @@ public class Timer : Singleton<Timer>
         remainingTime += t;
     }
 
-    public static string GetTotalTime()
+    public static string GetTotalTimeString()
     {
         return $"{Mathf.FloorToInt(totalTime / 60):00}:{Mathf.FloorToInt(totalTime % 60):00}"; ;
+    }
+
+    public static float GetTotalTime()
+    {
+        return totalTime;
+    }
+
+    public float GetRemainingTime()
+    {
+        return remainingTime;
     }
 }

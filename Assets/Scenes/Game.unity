@@ -123,49 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &146411479
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 146411481}
-  - component: {fileID: 146411480}
-  m_Layer: 0
-  m_Name: ButtonController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &146411480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146411479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db41bd47a067d44d393f067822b6a18d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &146411481
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146411479}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 328.16, y: 611.10913, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &182331784
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &356960602
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -734,7 +691,7 @@ Transform:
   - {fileID: 1659859121}
   - {fileID: 2031103400}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845048801
 GameObject:
@@ -783,18 +740,6 @@ MonoBehaviour:
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1806078785}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnBallOutOfRange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1437846505}
         m_TargetAssemblyTypeName: BallGenerator, Assembly-CSharp
         m_MethodName: DecreaseBallCount
@@ -932,7 +877,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &888004517 stripped
 GameObject:
@@ -1249,7 +1194,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1437846504
 GameObject:
@@ -1281,11 +1226,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   test: 0
-  Balls:
-  - {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
-  - {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
-  - {fileID: 5601006868593016915, guid: ec6f58f58d6d612408b6b99e28387fd8, type: 3}
-  SpawnRates: 581b0000e8030000d0070000
+  SpawnRates:
+  - ball: {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+    rate: 7000
+  - ball: {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
+    rate: 1000
+  - ball: {fileID: 5601006868593016915, guid: ec6f58f58d6d612408b6b99e28387fd8, type: 3}
+    rate: 2000
   InitY: 5.51
   InitRangeX:
   - -2.1
@@ -1294,9 +1241,11 @@ MonoBehaviour:
   - 0.2
   - 3
   NumberSpawnRange: 0100000002000000
+  BallMaxInitVel: 8
   BallTTL: 20
   MaxBallsCount: 4
   ballCount: 0
+  NextSpawnRates: []
 --- !u!4 &1437846506
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,12 +1253,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437846504}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3986361, y: -0.8193874, z: -2.0373077}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32697105, y: 0.20001775, z: 4.7155886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 2038209367}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1536384269
 GameObject:
@@ -1406,7 +1355,7 @@ RectTransform:
   - {fileID: 1988421300}
   - {fileID: 888004518}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1733,7 +1682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   test: 0
+  paused: 0
   pausePanel: {fileID: 888004517}
+  generator: {fileID: 0}
 --- !u!4 &1806078786
 Transform:
   m_ObjectHideFlags: 0
@@ -1933,7 +1884,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2361,3 +2312,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2038209365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038209367}
+  - component: {fileID: 2038209366}
+  m_Layer: 0
+  m_Name: PhaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2038209366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038209365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e529de584bd2694096be5efc0abe500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  timer: {fileID: 0}
+  ballGenerator: {fileID: 0}
+  EarlyGrav: -6.6
+  EarlyVel: 2
+  NormalGrav: -9.81
+  NormalVel: 8
+  EndSpawnRate:
+  - ball: {fileID: 5064889586338775919, guid: 33c1833d99900a84cac8ab50c7fad11a, type: 3}
+    rate: 6000
+  - ball: {fileID: 1852805912388170544, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+    rate: 4000
+--- !u!4 &2038209367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038209365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7256072, y: -1.0194051, z: -6.7528963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1437846506}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

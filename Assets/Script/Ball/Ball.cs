@@ -21,10 +21,9 @@ public enum BALLTYPES
 public class Ball : MonoBehaviour, IBall
 {
     public AudioClip ballhitAudio;
-    public float BonusTime = InitBonus;
+    public float BonusTime = INIT_BONUS;
     public float[] BallSizeRange = { 0.1f, 0.2f };
-    public float BallMaxInitVel = MaxVel;
-    public float ttl = InitTtl;
+    public float ttl = INIT_TTL;
     public BallHitEvent BallHitEvent;
     public GameEvent BallOutOfRangeEvent;
     public IEffect Effect { get { return effect; } }
@@ -38,8 +37,6 @@ public class Ball : MonoBehaviour, IBall
         gameObject.tag = "Ball";
         this.effect = new Effect(Timer.Instance, BonusTime, ballhitAudio);
         SetSize(Random.Range(BallSizeRange[0], BallSizeRange[1]));
-        SetXVelocity(Random.Range(-BallMaxInitVel, BallMaxInitVel));
-  
     }
 
     void Update()
@@ -50,8 +47,8 @@ public class Ball : MonoBehaviour, IBall
             this.GetComponent<CircleCollider2D>().enabled = false;
         }
 
-        if (gameObject.transform.position.x > MaxX || gameObject.transform.position.y > MaxY ||
-            gameObject.transform.position.x < MinX || gameObject.transform.position.y < MinY )
+        if (gameObject.transform.position.x > MAX_X || gameObject.transform.position.y > MAX_Y ||
+            gameObject.transform.position.x < MIN_X || gameObject.transform.position.y < MIN_Y )
         {
             Destroy(gameObject);
             BallOutOfRangeEvent.TriggerEvent();
@@ -77,7 +74,6 @@ public class Ball : MonoBehaviour, IBall
     {
         Destroy(gameObject);
         BallHitEvent.TriggerEvent(this.effect);
-
     }
 
     public void SetTTL(float ttl)
@@ -92,27 +88,27 @@ public class Ball : MonoBehaviour, IBall
 
     void OnMouseDown()
     {
-        PlayerDestroy();
-        ShowBonusText();
-
+        if (!GameManager.Instance.paused)
+        {
+            PlayerDestroy();
+            ShowBonusText();
+        }
     }
 
     public void ShowBonusText()
     {
         GameObject floatUp = Instantiate(floatUpParent, transform.position, Quaternion.identity);
 
-        if (BonusTime == BonusBoom)
+        if (BonusTime == PENALTY_BOMB)
         {
-            floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BonusBoomText;
-            floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FloatUpBoom);
+            floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = PENALTY_BOMB_TEXT;
+            floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FLOAT_UP_BOMB);
         }
         else
         {
 
-            floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BonusNormalText;
-            floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FloatUpNormal);
+            floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BONUS_NORMAL_TEXT;
+            floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FLOAT_UP_NORMAL);
         }
-
-    
     }
 }

@@ -7,7 +7,7 @@ public class GameOverTimeText : MonoBehaviour
     void Start()
     {
         Text text = gameObject.GetComponent<Text>();
-        text.text = Timer.GetTotalTime();
+        text.text = Timer.GetTotalTimeString();
     }
 
 }
