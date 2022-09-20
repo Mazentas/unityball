@@ -12,6 +12,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: types
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: Special
       value: 1
       objectReference: {fileID: 0}
@@ -27,6 +35,10 @@ PrefabInstance:
       propertyPath: balltypes
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: BallhitAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: aafd8e47500184f64af753a6d853eda8, type: 3}
     - target: {fileID: -2464114041044675504, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: ballhitAudio
       value: 

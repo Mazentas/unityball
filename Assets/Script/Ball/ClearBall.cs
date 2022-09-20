@@ -7,6 +7,6 @@ public class ClearBall : Ball
     void Awake()
     {
         gameObject.tag = "Ball";
-        effect = new ClearingEffect(GameManager.Instance ,new Effect(Timer.Instance, BonusTime, ballhitAudio));
+        effect = new ClearingEffect(GameManager.Instance , new Effect(Timer.Instance, BonusTime, BallhitAudio, this.Type));
     }
 }

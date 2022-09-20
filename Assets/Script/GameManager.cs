@@ -41,7 +41,6 @@ public class GameManager : Singleton<GameManager>
     public void OnBallHit(IEffect effect)
     {
         effect.Execute();
-        generator.DecreaseBallCount();
     }
 
     public void OnTimeOut()

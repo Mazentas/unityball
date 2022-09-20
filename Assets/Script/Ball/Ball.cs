@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using static Util.Constants;
 
 public interface IBall
 {
+    public BALLTYPES GetBallType();
     public void SetTTL(float ttl);
     public void SetSize(float size);
     public void SetXVelocity(float velocX);
@@ -20,7 +20,8 @@ public enum BALLTYPES
 
 public class Ball : MonoBehaviour, IBall
 {
-    public AudioClip ballhitAudio;
+    public BALLTYPES Type;
+    public AudioClip BallhitAudio;
     public float BonusTime = INIT_BONUS;
     public float[] BallSizeRange = { 0.1f, 0.2f };
     public float ttl = INIT_TTL;
@@ -34,8 +35,7 @@ public class Ball : MonoBehaviour, IBall
 
     void Awake()
     {
-        gameObject.tag = "Ball";
-        this.effect = new Effect(Timer.Instance, BonusTime, ballhitAudio);
+        this.effect = new Effect(Timer.Instance, BonusTime, BallhitAudio, Type);
         SetSize(Random.Range(BallSizeRange[0], BallSizeRange[1]));
     }
 
@@ -110,5 +110,10 @@ public class Ball : MonoBehaviour, IBall
             floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BONUS_NORMAL_TEXT;
             floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FLOAT_UP_NORMAL);
         }
+    }
+
+    public BALLTYPES GetBallType()
+    {
+        return Type;
     }
 }

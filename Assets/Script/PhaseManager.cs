@@ -9,8 +9,10 @@ public class PhaseManager : Singleton<PhaseManager>
     public BallGenerator ballGenerator;
     public float EarlyGrav = -3.3f;
     public float EarlyVel = 0f;
+    public BallSpawn[] EarlySpawnRate;
     public float NormalGrav = -9.81f;
     public float NormalVel = 8f;
+    public BallSpawn[] NormalSpawnRate;
     public BallSpawn[] EndSpawnRate;
     
     enum Phase { Early, Normal, End }
@@ -26,6 +28,7 @@ public class PhaseManager : Singleton<PhaseManager>
         phase = Phase.Early;
         Physics2D.gravity = new Vector2(0, EarlyGrav);
         ballGenerator.BallMaxInitVel = EarlyVel;
+        ballGenerator.SpawnRates = EarlySpawnRate;
         phaseEffectSet = true;
 
     }
@@ -50,6 +53,7 @@ public class PhaseManager : Singleton<PhaseManager>
                 {
                     Physics2D.gravity = new Vector2(0, NormalGrav);
                     ballGenerator.BallMaxInitVel = NormalVel;
+                    ballGenerator.SpawnRates = NormalSpawnRate;
                     phaseEffectSet = true;
                 }
 

@@ -2,6 +2,7 @@
 
 public interface IEffect
 {
+    public BALLTYPES Type { get; }
     public void Execute();
 }
 
@@ -9,12 +10,14 @@ public class Effect : IEffect
 {
     AudioClip hitAudio;
     GameManager gameManager;
+    public BALLTYPES Type { get; }
 
-    public Effect(Timer timer, float bonusTime, AudioClip hitAudio)
+    public Effect(Timer timer, float bonusTime, AudioClip hitAudio, BALLTYPES type)
     {
         this.timer = timer;
         this.bonusTime = bonusTime;
         this.hitAudio = hitAudio;
+        this.Type = type;
         gameManager = GameManager.Instance;
     }
 
@@ -34,6 +37,7 @@ public class Effect : IEffect
 
 public class ClearingEffect : IEffect
 {
+    public BALLTYPES Type { get; }
     IEffect effect;
     GameManager gameManager;
 

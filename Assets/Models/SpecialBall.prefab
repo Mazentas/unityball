@@ -28,6 +28,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4444248649924025915, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444248649924025915, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444248649924025915, guid: 6d9d8e1188935004ca6daff4739af88a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.31
       objectReference: {fileID: 0}
@@ -207,12 +215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb7b142053efc04bb3104fc3fa2c4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballhitAudio: {fileID: 8300000, guid: e01b0fe07eb1546b794c7f2f9b4d23b3, type: 3}
+  Type: 0
+  BallhitAudio: {fileID: 8300000, guid: e01b0fe07eb1546b794c7f2f9b4d23b3, type: 3}
   BonusTime: 5
   BallSizeRange:
   - 0.1
   - 0.2
-  BallMaxInitVel: 8
   ttl: 10
   BallHitEvent: {fileID: 11400000, guid: c87afd171f5a8484fb41b510d72fe571, type: 2}
   BallOutOfRangeEvent: {fileID: 11400000, guid: f8df9903481c01543a82ca513e183f13, type: 2}

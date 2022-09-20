@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2464114041044675504}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,12 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9dfd38f20c8f44ea4b04ed0576d5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballhitAudio: {fileID: 8300000, guid: 48d7d183954e54e60b4dd949bee3877c, type: 3}
+  Type: 1
+  BallhitAudio: {fileID: 8300000, guid: 48d7d183954e54e60b4dd949bee3877c, type: 3}
   BonusTime: 5
   BallSizeRange:
   - 0.2
   - 0.3
-  BallMaxInitVel: 8
   ttl: 10
   BallHitEvent: {fileID: 11400000, guid: c87afd171f5a8484fb41b510d72fe571, type: 2}
   BallOutOfRangeEvent: {fileID: 11400000, guid: f8df9903481c01543a82ca513e183f13, type: 2}
