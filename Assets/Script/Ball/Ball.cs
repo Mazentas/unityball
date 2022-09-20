@@ -110,6 +110,8 @@ public class Ball : MonoBehaviour, IBall
             floatUp.transform.GetChild(0).GetComponent<TextMesh>().text = BONUS_NORMAL_TEXT;
             floatUp.transform.GetChild(0).GetComponent<Animator>().Play(FLOAT_UP_NORMAL);
         }
+
+        Destroy(floatUp, 1f);
     }
 
     public BALLTYPES GetBallType()
