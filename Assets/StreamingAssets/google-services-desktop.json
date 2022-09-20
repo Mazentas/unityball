@@ -1,0 +1,36 @@
+{
+  "project_info": {
+    "project_number": "987355150121",
+    "project_id": "mazentasalienball",
+    "storage_bucket": "mazentasalienball.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987355150121:ios:41bb320ef615dd3bd62938",
+        "android_client_info": {
+          "package_name": "com.mazentas.alienball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987355150121-2k2ccr5p9inju735krd030pofsm3b784.apps.googleusercontent.com"
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ63h8ncWjw87ZzHgcJNehIFfFKZhpfMc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
